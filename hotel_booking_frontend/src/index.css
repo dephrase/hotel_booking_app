@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.navbar_container{
+  border-style: solid;
+  border-color: aqua;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 20px;
+  box-shadow: 5px 5px rgba(213, 214, 212, 0.2);
+  height: 50px;
+}
+
+.search_bar{
+  border-style: solid;
+  border-color: aqua;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 20px;
+  height: 50px;
+  box-shadow: 5px 5px rgba(213, 214, 212, 0.2);
+}
+
+<<<<<<< HEAD
+.hotel_container{
+  border-style: solid;
+  border-color: aqua;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 20px;
+  height: 50px;
+  box-shadow: 5px 5px rgba(213, 214, 212, 0.2);
+}
+
+.search_form{
+  display: flex;
+  flex-direction: row;
+}
+
+=======
+>>>>>>> 0e7ca0c40775e45aeb997f67b5f31ef52cace5d0
+
