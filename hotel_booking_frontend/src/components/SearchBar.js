@@ -27,6 +27,8 @@ const SearchBar = ({setBookingInfo}) => {
         }
     }, [searchCountry])
 
+    const today = new Date().toISOString().split('T')[0]
+
     const getLocations = (event) => {
         if(event){
             const searchTerm = event.target.value.toLowerCase();
@@ -107,11 +109,11 @@ const SearchBar = ({setBookingInfo}) => {
                 {renderCitySelect()}
                 <div className="check-in">
                     <label htmlFor="check-in">Check-in</label><br/>
-                    <input type="date" id="check-in" name="check-in" onChange={updateCheckinDate}></input>
+                    <input type="date" id="check-in" name="check-in" min={today} onChange={updateCheckinDate}></input>
                 </div>
                 <div className="check-out">
                     <label htmlFor="check-out">Check-out</label><br/>
-                    <input type="date" id="check-out" name="check-out" mindate={new Date(checkinDate)} onChange={updateCheckoutDate}></input>
+                    <input type="date" id="check-out" name="check-out" min={checkinDate} onChange={updateCheckoutDate}></input>
                 </div>
                 <div className="guests">
                     <label htmlFor="guests">Adults: </label>
