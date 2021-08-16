@@ -3,9 +3,7 @@ import SearchBar from "../components/SearchBar";
 import HotelContainer from "./HotelContainer";
 import { useState, useEffect } from "react";
 
-const MainContainer = () => {
-
-    const [bookingInfo, setBookingInfo] = useState(null)
+const MainContainer = ({setBookingInfo, bookingInfo}) => {
 
     function renderHotels(){
         if(bookingInfo){

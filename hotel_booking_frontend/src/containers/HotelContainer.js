@@ -35,8 +35,8 @@ const HotelContainer = ({bookingInfo}) => {
                     <p>{hotel.starRating} stars</p>
                     <p>{hotel.ratePlan.price.fullyBundledPricePerStay}</p>
                     <p>{hotel.ratePlan.price.info}: {hotel.ratePlan.price.current}</p>
-                    <p>destinationID: {hotel.destinationId}</p>
-                    <Link to="/hotel_info" hotel={hotel}><button>Book Now</button></Link>
+                    <p>HotelID: {hotel.id}</p>
+                    <Link to={`/hotel_info/${hotel.id}`}><button>Book Now</button></Link>
                 </div>
                 hotelDivs.push(hotelDiv)
                 index++;
