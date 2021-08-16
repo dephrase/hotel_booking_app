@@ -17,7 +17,6 @@ const MainContainer = () => {
 
     return (
         <>
-        <NavBar/>
         <SearchBar setBookingInfo={setBookingInfo}/>
         {renderHotels()}
         </>

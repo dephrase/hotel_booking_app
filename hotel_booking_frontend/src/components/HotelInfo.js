@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
 
 
-const HotelInfo = () => {
+const HotelInfo = ({hotel}) => {
 
-    return <p>Hotel Info Component</p>
+    const [hotelInformation, setHotelInformation] = useState(null)
+
+    useEffect(() => {
+        if(hotel){
+            setHotelInformation(hotel)
+        }
+    }, [])
+
+    return(
+        <>
+            {hotel ? <p>{hotelInformation.name}</p> : <p>Loading...</p>}
+        </>
+    )
+    
 
 
 }
