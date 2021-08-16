@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-<<<<<<< HEAD
 const SearchBar = ({setBookingInfo}) => {
 
     const [locations, setLocations] = useState(null);
@@ -125,22 +124,6 @@ const SearchBar = ({setBookingInfo}) => {
             </div>
         </>
     )
-=======
-const SearchBar = () => {
-
-    const [locations, setLocations] = useState([]);
-
-    useEffect(() => {
-
-    }, [])
-
-    return (
-        <>
-            <p className="search_bar">SearchBar</p>
-        </>
-    )
-
->>>>>>> 0e7ca0c40775e45aeb997f67b5f31ef52cace5d0
 }
 
 export default SearchBar;
