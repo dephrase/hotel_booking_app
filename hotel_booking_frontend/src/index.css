@@ -42,6 +42,11 @@ code {
   box-shadow: 5px 5px rgba(213, 214, 212, 0.2);
 }
 
+.hotel_div{
+  border-style: solid;
+  padding: 5px;
+}
+
 .search_form{
   display: flex;
   flex-direction: row;
