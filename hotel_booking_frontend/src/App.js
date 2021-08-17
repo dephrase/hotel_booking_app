@@ -1,8 +1,7 @@
 import './App.css';
 import MainContainer from './containers/MainContainer';
 import HotelInfo from './components/HotelInfo';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; 
-// import { useParams } from 'react-router';
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom"; 
 import NavBar from './components/NavBar';
 import { useState } from 'react';
 import Confirmation from './components/Confirmation';

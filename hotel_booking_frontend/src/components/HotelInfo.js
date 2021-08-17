@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import Confirmation from "./Confirmation";
 
-function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails}) {
+function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, history}) {
 
     const [hotel, setHotel] = useState(null);
+    const [isConfirmed, setIsConfirmed] = useState(false);
 
     useEffect(()=>{
         if(bookingInfo){
@@ -25,7 +27,9 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails}) {
     const handleConfirmation = () => {
         console.log(window.location)
         setHotelFinalDetails(hotel)
-        window.location="/confirmation"
+        // window.location="/confirmation"
+        setIsConfirmed(true)
+
     }
 
     const getHotelRooms = () => {
@@ -42,6 +46,7 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails}) {
                 <button onClick={handleConfirmation}>Reserve Now</button>
             </div>
             availableRooms.push(roomDiv)
+            index++;
         }
         return availableRooms;
     } else {
@@ -74,9 +79,10 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails}) {
         }
     }
 
+
     return(
         <>
-            {renderHotelInfo()}
+           {isConfirmed ? <Confirmation hotel={hotel}/> : renderHotelInfo() }
         </>
     )
 }

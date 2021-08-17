@@ -1,9 +1,25 @@
+import { useEffect} from "react";
 
+const Confirmation = ({hotel}) => {
 
-const Confirmation = () => {
+    const renderConfirmation = () => {
+        if(hotel){
+            console.log(hotel)
+            return(
+                <div>
+                    <h3>Your booking confirmation</h3>
+                    <div>
+
+                    </div>
+                </div>
+            )
+        }
+    }
 
     return(
-        <p>Confirmation Page</p>
+        <>
+            {renderConfirmation()}
+        </>
     )
 }
 
