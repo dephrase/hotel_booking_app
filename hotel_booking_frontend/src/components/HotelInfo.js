@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-
-function HotelInfo({bookingInfo, id}) {
+function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails}) {
 
     const [hotel, setHotel] = useState(null);
 
@@ -21,17 +20,65 @@ function HotelInfo({bookingInfo, id}) {
         })
         .then(res => res.json())
         .then(data => setHotel(data))
-        .then(console.log(hotel))
+    }
+
+    const handleConfirmation = () => {
+        console.log(window.location)
+        setHotelFinalDetails(hotel)
+        window.location="/confirmation"
+    }
+
+    const getHotelRooms = () => {
+        if(hotel && hotelDetails){
+
+        let availableRooms = [];
+        let images = [];
+        let index=0;
+        for(let room of hotel.data.body.roomsAndRates.rooms){
+            let roomDiv = <div key={index}>
+                <h4>{room.name}</h4>
+                <h4>{room.ratePlans[0].price.current}</h4>
+                {/* <img src={room.images[0].thumbnailUrl} alt="Room thumbnail"/> */}
+                <button onClick={handleConfirmation}>Reserve Now</button>
+            </div>
+            availableRooms.push(roomDiv)
+        }
+        return availableRooms;
+    } else {
+        return <p>Loading...</p>
+    }
+    }
+
+    const renderHotelInfo = () => {
+        if(hotel && hotelDetails){
+            let fullTagLine = hotel.data.body.propertyDescription.tagline[0]
+            let tagline = fullTagLine.substring(3, fullTagLine.length - 4)
+            return (
+                <div>
+                    <h3>{hotelDetails.name}</h3>
+                    <h5>{tagline}, {hotelDetails.address.locality}</h5>
+                    <h5>{hotelDetails.starRating} stars</h5>
+                    <div className="reviews">
+                        <p>{hotelDetails.guestReviews.badgeText}</p>
+                        <p>{hotelDetails.guestReviews.rating}</p>
+                    </div>
+                    <div className="purchaseRoom">
+                        <p>{hotelDetails.ratePlan.price.info}</p>
+                        <p>{hotelDetails.ratePlan.price.current}</p>
+                    </div>
+                    <div className="hotelRooms">
+                        {getHotelRooms()}
+                    </div>
+                </div>
+            )
+        }
     }
 
     return(
         <>
-            <p>{id}</p>
+            {renderHotelInfo()}
         </>
     )
-    
-
-
 }
 
 export default HotelInfo;

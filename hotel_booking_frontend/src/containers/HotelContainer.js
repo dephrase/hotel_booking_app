@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HotelInfo from "../components/HotelInfo";
 
-const HotelContainer = ({bookingInfo}) => {
+const HotelContainer = ({bookingInfo, setHotel}) => {
 
     const [hotels, setHotels] = useState(null);
 
@@ -20,11 +20,14 @@ const HotelContainer = ({bookingInfo}) => {
         }
     }, [bookingInfo])
 
+    const updateHotel = (hotel) => {
+        setHotel(hotel)
+    }
+
     function renderHotels(){
         let hotelDivs = [];
         if(hotels){
             let index = 0;
-            console.log(hotels)
             for(let hotel of hotels.data.body.searchResults.results){
                 let hotelDiv = <div key={index} className="hotel_div">
                     <h4>{hotel.name}</h4>
@@ -36,7 +39,7 @@ const HotelContainer = ({bookingInfo}) => {
                     <p>{hotel.ratePlan.price.fullyBundledPricePerStay}</p>
                     <p>{hotel.ratePlan.price.info}: {hotel.ratePlan.price.current}</p>
                     <p>HotelID: {hotel.id}</p>
-                    <Link to={`/hotel_info/${hotel.id}`}><button>Book Now</button></Link>
+                    <Link to={`/hotel_info/${hotel.id}`}><button onClick={() => updateHotel(hotel)}>Book Now</button></Link>
                 </div>
                 hotelDivs.push(hotelDiv)
                 index++;

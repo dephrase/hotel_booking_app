@@ -61,7 +61,6 @@ const SearchBar = ({setBookingInfo}) => {
 
     function handleSubmit(event){
         event.preventDefault();
-        console.log(event)
         let bookingInfo = {
             "Country": event.target[0].value,
             "CityCode": event.target[1].value,

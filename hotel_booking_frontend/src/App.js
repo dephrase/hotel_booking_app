@@ -5,10 +5,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { useParams } from 'react-router';
 import NavBar from './components/NavBar';
 import { useState } from 'react';
+import Confirmation from './components/Confirmation';
 
 function App() {
 
   const [bookingInfo, setBookingInfo] = useState(null)
+  const [hotelDetails, setHotel] = useState(null)
+  const [hotelFinalDetails, setHotelFinalDetails] = useState(null)
 
   return (
     <Router>
@@ -16,14 +19,14 @@ function App() {
         <NavBar/>
         <Switch>
         <Route exact path="/" render={() => {
-          return <MainContainer setBookingInfo={setBookingInfo} bookingInfo={bookingInfo}/>
+          return <MainContainer setBookingInfo={setBookingInfo} bookingInfo={bookingInfo} setHotel={setHotel}/>
         }}/>
         <Route path="/hotel_info/:id" render={(props) => {
-          return <HotelInfo bookingInfo={bookingInfo} id={props.match.params.id}/>
+          return <HotelInfo bookingInfo={bookingInfo} id={props.match.params.id} hotelDetails={hotelDetails} setHotelFinalDetails={setHotelFinalDetails}/>
         }}/>
-          {/* // path="/hotel_info" exact render={() => <HotelInfo hotels={hotels} />}
-             
-        /> */}
+        <Route path="/confirmation" render={() => {
+          return <Confirmation hotelFinalDetails={hotelFinalDetails}/>
+        }}/>
         </Switch>
       </>
     </Router>
