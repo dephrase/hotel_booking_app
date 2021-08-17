@@ -5,6 +5,7 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, history
 
     const [hotel, setHotel] = useState(null);
     const [isConfirmed, setIsConfirmed] = useState(false);
+    const [roomDetails, setRoomDetails] = useState(null);
 
     useEffect(()=>{
         if(bookingInfo){
@@ -24,10 +25,11 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, history
         .then(data => setHotel(data))
     }
 
-    const handleConfirmation = () => {
+    const handleConfirmation = (room) => {
         console.log(window.location)
         setHotelFinalDetails(hotel)
         // window.location="/confirmation"
+        setRoomDetails(room)
         setIsConfirmed(true)
 
     }
@@ -43,7 +45,7 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, history
                 <h4>{room.name}</h4>
                 <h4>{room.ratePlans[0].price.current}</h4>
                 {/* <img src={room.images[0].thumbnailUrl} alt="Room thumbnail"/> */}
-                <button onClick={handleConfirmation}>Reserve Now</button>
+                <button onClick={() => handleConfirmation(room)}>Reserve Now</button>
             </div>
             availableRooms.push(roomDiv)
             index++;
@@ -82,7 +84,7 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, history
 
     return(
         <>
-           {isConfirmed ? <Confirmation hotel={hotel}/> : renderHotelInfo() }
+           {isConfirmed ? <Confirmation hotel={hotel} roomDetails={roomDetails} bookingInfo={bookingInfo} hotelDetails={hotelDetails}/> : renderHotelInfo() }
         </>
     )
 }
