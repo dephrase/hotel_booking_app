@@ -48,7 +48,10 @@ public class Booking {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    public Booking(long hotel_id, String fromDate, String toDate, Double price, int numberOfAdults, int numberOfChildren, String roomType, Customer customer) {
+    @Column(name = "hotel_name")
+    private String hotelName;
+
+    public Booking(long hotel_id, String fromDate, String toDate, Double price, int numberOfAdults, int numberOfChildren, String roomType, Customer customer, String hotelName) {
         this.hotel_id = hotel_id;
         this.fromDate = fromDate;
         this.toDate = toDate;
@@ -57,6 +60,7 @@ public class Booking {
         this.numberOfChildren = numberOfChildren;
         this.roomType = roomType;
         this.customer = customer;
+        this.hotelName = hotelName;
     }
 
     public Booking(){
@@ -135,4 +139,11 @@ public class Booking {
         this.customer = customer;
     }
 
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
 }

@@ -34,7 +34,7 @@ public class DataLoader implements ApplicationRunner {
 //        Date fromDate = parseDate("2021-08-21");
 //        Date toDate = parseDate("2021-08-25");
 //
-        Booking booking = new Booking(101, "2021-08-21", "2021-08-25", 500.87, 2, 0, "Executive Double", customer);
+        Booking booking = new Booking(101, "2021-08-21", "2021-08-25", 500.87, 2, 0, "Executive Double", customer, "The Ibis");
         bookingRepository.save(booking);
 //
         customer.addBooking(booking);

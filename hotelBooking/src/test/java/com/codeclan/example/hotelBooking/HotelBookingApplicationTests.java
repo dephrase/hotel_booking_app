@@ -77,7 +77,7 @@ class HotelBookingApplicationTests {
 		String twoString = "2021-06-23";
 		Date fromDate = valueOf(oneString);
 		Date toDate = valueOf(twoString);
-		Booking newBooking = new Booking(102, oneString, twoString, 500.87, 2, 0, "Executive Double", customer);
+		Booking newBooking = new Booking(102, oneString, twoString, 500.87, 2, 0, "Executive Double", customer, "The Hilton");
 		bookingRepository.save(newBooking);
 		String dateString = "2021-08-21";
 		Date date = valueOf(dateString);
