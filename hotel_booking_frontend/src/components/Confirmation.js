@@ -1,4 +1,5 @@
 import { useEffect} from "react";
+import { Link } from "react-router-dom";
 
 const Confirmation = ({hotel, roomDetails, bookingInfo, hotelDetails}) => {
 
@@ -14,7 +15,7 @@ const Confirmation = ({hotel, roomDetails, bookingInfo, hotelDetails}) => {
                     <div>  
                         <h4>{roomDetails.name} at {hotelDetails.name} for {bookingInfo.Adults} Adults from {bookingInfo.Checkin} to {bookingInfo.Checkout}</h4>
                         <h4>Total Price: Get total price from room</h4>
-                        <button>Book Stay!</button>
+                        <Link to="/profile"><button>Book Stay!</button></Link>
                     </div>
                 </div>
             )

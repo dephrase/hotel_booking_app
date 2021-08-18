@@ -17,13 +17,22 @@ const Profile = () => {
     const renderYourBookings = function(){
         let bookingsList = [];
 
+        let index = 0;
         for(let booking of yourBookings){
             bookingsList.push(
-                <div>
-                    
+                <div key={index}>
+                    <h3>{booking.hotelName}</h3>
+                    <h3>{booking.roomType}</h3>
+                    <p>Check-in Date: {booking.fromDate}</p>
+                    <p>Check-out Date: {booking.toDate}</p>
+                    <p>Adults: {booking.numberOfAdults}</p>
+                    <p>Children: {booking.numberOfChildren}</p>
                 </div>
+                
             )
+            index++;
         }
+        return bookingsList;
     }
 
     useEffect(() => {
@@ -36,8 +45,11 @@ const Profile = () => {
         }
     }, [yourBookings])
 
-    return <p>Profile page</p>
-
+    return (
+        <>
+        {yourBookings ? renderYourBookings() : null}
+        </>
+    )
 }
 
 export default Profile;
