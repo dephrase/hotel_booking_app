@@ -10,7 +10,7 @@ const Confirmation = ({hotel, roomDetails, bookingInfo, hotelDetails}) => {
             console.log(roomDetails)
             return(
                 <div>
-                    <h3>Your booking confirmation</h3>
+                    <h3>Confirm your booking</h3>
                     <div>  
                         <h4>{roomDetails.name} at {hotelDetails.name} for {bookingInfo.Adults} Adults from {bookingInfo.Checkin} to {bookingInfo.Checkout}</h4>
                         <h4>Total Price: Get total price from room</h4>

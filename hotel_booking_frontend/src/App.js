@@ -11,6 +11,7 @@ function App() {
   const [bookingInfo, setBookingInfo] = useState(null)
   const [hotelDetails, setHotel] = useState(null)
   const [hotelFinalDetails, setHotelFinalDetails] = useState(null)
+  
 
   return (
     <Router>
