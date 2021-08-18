@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import { useEffect, useState } from 'react';
 import Confirmation from './components/Confirmation';
 import Request from './helpers/request';
+import Profile from './components/Profile';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
   return (
     <Router>
       <>
-        <NavBar/>
+        <NavBar user={user}/>
         <Switch>
         <Route exact path="/" render={() => {
           return <MainContainer setBookingInfo={setBookingInfo} bookingInfo={bookingInfo} setHotel={setHotel}/>
@@ -39,6 +40,9 @@ function App() {
         }}/>
         <Route path="/confirmation" render={() => {
           return <Confirmation hotelFinalDetails={hotelFinalDetails}/>
+        }}/>
+        <Route path="/profile" render = {() => {
+          return <Profile user={user}/>
         }}/>
         </Switch>
       </>
