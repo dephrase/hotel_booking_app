@@ -52,7 +52,7 @@ public class Booking {
         this.hotel_id = hotel_id;
         this.fromDate = fromDate;
         this.toDate = toDate;
-        this.price = price;
+        this.price = Double.valueOf(price);
         this.numberOfAdults = numberOfAdults;
         this.numberOfChildren = numberOfChildren;
         this.roomType = roomType;

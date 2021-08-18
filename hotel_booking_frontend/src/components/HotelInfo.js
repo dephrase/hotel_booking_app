@@ -43,7 +43,7 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user}) 
             numberOfAdults: bookingInfo.Adults,
             numberOfChildren: bookingInfo.Children,
             roomType: room.name,
-            customer: user.id
+            customer: user
         }
         console.log(newBooking)
         setHotelFinalDetails(hotel)
