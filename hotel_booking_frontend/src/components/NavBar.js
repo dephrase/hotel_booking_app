@@ -6,9 +6,13 @@ const NavBar = ({user}) => {
         return(
             <>
             <div className="navbar_container">
-                <ul>
+                <ul className="navbar_ul">
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/">
+                            <span>
+                                <h3>Home</h3>
+                            </span>
+                        </Link>
                     </li>
                     <li>
                         <Link to="/profile">
@@ -25,7 +29,6 @@ const NavBar = ({user}) => {
     } else {
         return <p>Loading your profile...</p>
     }
-    
 }
 
 export default NavBar;
