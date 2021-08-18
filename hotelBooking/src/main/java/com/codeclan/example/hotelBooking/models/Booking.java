@@ -19,19 +19,26 @@ public class Booking {
     @Column(name = "hotel_id")
     private long hotel_id;
 
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private java.util.Date fromDate;
+//    @Temporal(TemporalType.DATE)
+//    @JsonFormat(pattern="yyyy-MM-dd")
+    @Column(name = "fromDate")
+    private String fromDate;
 
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private java.util.Date toDate;
+    @Column(name = "toDate")
+    private String toDate;
+
+//    @Temporal(TemporalType.DATE)
+//    @JsonFormat(pattern="yyyy-MM-dd")
+//    private java.util.Date toDate;
 
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "number_of_guests")
-    private int numberOfGuests;
+    @Column(name = "number_of_adults")
+    private int numberOfAdults;
+
+    @Column(name = "number_of_children")
+    private int numberOfChildren;
 
     @Column(name = "room_type")
     private String roomType;
@@ -41,12 +48,13 @@ public class Booking {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    public Booking(long hotel_id, java.util.Date fromDate, java.util.Date toDate, Double price, int numberOfGuests, String roomType, Customer customer) {
+    public Booking(long hotel_id, String fromDate, String toDate, Double price, int numberOfAdults, int numberOfChildren, String roomType, Customer customer) {
         this.hotel_id = hotel_id;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.price = price;
-        this.numberOfGuests = numberOfGuests;
+        this.numberOfAdults = numberOfAdults;
+        this.numberOfChildren = numberOfChildren;
         this.roomType = roomType;
         this.customer = customer;
     }
@@ -71,19 +79,19 @@ public class Booking {
         this.hotel_id = hotel_id;
     }
 
-    public java.util.Date getFromDate() {
+    public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
 
-    public java.util.Date getToDate() {
+    public String getToDate() {
         return toDate;
     }
 
-    public void setToDate(java.util.Date toDate) {
+    public void setToDate(String toDate) {
         this.toDate = toDate;
     }
 
@@ -95,12 +103,20 @@ public class Booking {
         this.price = price;
     }
 
-    public int getNumberOfGuests() {
-        return numberOfGuests;
+    public int getNumberOfAdults() {
+        return numberOfAdults;
     }
 
-    public void setNumberOfGuests(int numberOfGuests) {
-        this.numberOfGuests = numberOfGuests;
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
     }
 
     public String getRoomType() {

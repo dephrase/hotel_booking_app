@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import Request from "../helpers/request";
 import Confirmation from "./Confirmation";
 
-function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, history}) {
+function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user}) {
 
     const [hotel, setHotel] = useState(null);
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -25,13 +26,30 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, history
         .then(data => setHotel(data))
     }
 
-    const handleConfirmation = (room) => {
-        console.log(window.location)
-        setHotelFinalDetails(hotel)
-        // window.location="/confirmation"
-        setRoomDetails(room)
-        setIsConfirmed(true)
+    const handlePost = function(booking){
+        const request = new Request();
+        request.post("/api/bookings", booking)
+    }
 
+    const handleConfirmation = (room) => {
+        let dbPrice = Number(room.ratePlans[0].price.current.substring(1))
+        // let dbCheckin = new Date(bookingInfo.Checkin)
+        // let dbCheckout = new Date(bookingInfo.Checkout)
+        let newBooking = {
+            hotel_id: hotelDetails.id,
+            fromDate: bookingInfo.Checkin,
+            toDate: bookingInfo.Checkout,
+            price: dbPrice,
+            numberOfAdults: bookingInfo.Adults,
+            numberOfChildren: bookingInfo.Children,
+            roomType: room.name,
+            customer: user.id
+        }
+        console.log(newBooking)
+        setHotelFinalDetails(hotel)
+        setRoomDetails(room)
+        handlePost(newBooking)
+        setIsConfirmed(true)
     }
 
     const getHotelRooms = () => {
@@ -41,6 +59,7 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, history
         let images = [];
         let index=0;
         for(let room of hotel.data.body.roomsAndRates.rooms){
+            console.log(room.ratePlans[0].price.current)
             let roomDiv = <div key={index}>
                 <h4>{room.name}</h4>
                 <h4>{room.ratePlans[0].price.current}</h4>

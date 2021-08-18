@@ -34,11 +34,11 @@ public class DataLoader implements ApplicationRunner {
 //        Date fromDate = parseDate("2021-08-21");
 //        Date toDate = parseDate("2021-08-25");
 //
-//        Booking booking = new Booking(101, fromDate, toDate, 500.87, 2, "Executive Double", customer);
-//        bookingRepository.save(booking);
+        Booking booking = new Booking(101, "2021-08-21", "2021-08-25", 500.87, 2, 0, "Executive Double", customer);
+        bookingRepository.save(booking);
 //
-//        customer.addBooking(booking);
-//        customerRepository.save(customer);
+        customer.addBooking(booking);
+        customerRepository.save(customer);
     }
 
     public static java.util.Date parseDate(String date) {
