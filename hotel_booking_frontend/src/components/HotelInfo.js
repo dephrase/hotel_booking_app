@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Request from "../helpers/request";
 import Confirmation from "./Confirmation";
 
-function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user}) {
+function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user, setRoomPrice, roomPrice}) {
 
     const [hotel, setHotel] = useState(null);
     const [isConfirmed, setIsConfirmed] = useState(false);
@@ -33,8 +33,9 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user}) 
 
     const handleConfirmation = (room) => {
         let dbPrice = Number(room.ratePlans[0].price.current.substring(1))
-        // let dbCheckin = new Date(bookingInfo.Checkin)
-        // let dbCheckout = new Date(bookingInfo.Checkout)
+        console.log(dbPrice)
+        setRoomPrice(dbPrice);
+
         let newBooking = {
             hotel_id: hotelDetails.id,
             fromDate: bookingInfo.Checkin,
@@ -46,7 +47,6 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user}) 
             customer: user,
             hotelName: hotelDetails.name
         }
-        console.log(newBooking)
         setHotelFinalDetails(hotel)
         setRoomDetails(room)
         handlePost(newBooking)
@@ -55,12 +55,12 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user}) 
 
     const getHotelRooms = () => {
         if(hotel && hotelDetails){
-
+        console.log("Getting hotel rooms")
         let availableRooms = [];
         let images = [];
         let index=0;
         for(let room of hotel.data.body.roomsAndRates.rooms){
-            console.log(room.ratePlans[0].price.current)
+            // console.log(room.ratePlans[0].price.current)
             let roomDiv = <div key={index}>
                 <h4>{room.name}</h4>
                 <h4>{room.ratePlans[0].price.current}</h4>
@@ -104,7 +104,7 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user}) 
 
     return(
         <>
-           {isConfirmed ? <Confirmation hotel={hotel} roomDetails={roomDetails} bookingInfo={bookingInfo} hotelDetails={hotelDetails}/> : renderHotelInfo() }
+           {isConfirmed ? <Confirmation hotel={hotel} roomPrice={roomPrice} roomDetails={roomDetails} bookingInfo={bookingInfo} hotelDetails={hotelDetails}/> : renderHotelInfo() }
         </>
     )
 }

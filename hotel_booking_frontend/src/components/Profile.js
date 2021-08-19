@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Request from "../helpers/request";
 
-
 const Profile = () => {
 
     const [yourBookings, setYourBookings] = useState(null)
@@ -27,6 +26,7 @@ const Profile = () => {
                     <p>Check-out Date: {booking.toDate}</p>
                     <p>Adults: {booking.numberOfAdults}</p>
                     <p>Children: {booking.numberOfChildren}</p>
+                    <p>Price: £{booking.price}</p>
                 </div>
                 
             )
