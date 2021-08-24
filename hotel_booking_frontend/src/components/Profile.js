@@ -15,12 +15,16 @@ const Profile = () => {
         })
     }
 
-    const renderYourBookings = function(){
-        let bookingsList = [];
+    let today = new Date();
+    let date = today.getFullYear() +'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let todaysDate = date.toDate();
+
+    const renderBookings = function(bookingsList){
+        let bookingsDivs = [];
 
         let index = 0;
-        for(let booking of yourBookings){
-            bookingsList.push(
+        for(let booking of bookingsList){
+            bookingsDivs.push(
                 <div key={index}>
                     <h3>{booking.hotelName}</h3>
                     <h3>{booking.roomType}</h3>
@@ -34,7 +38,29 @@ const Profile = () => {
             )
             index++;
         }
-        return bookingsList;
+        return bookingsDivs;
+    }
+
+    const sortBookings = function(){
+        let previousBookings = [];
+        let futureBookings = [];
+
+        let index = 0;
+
+        for (let booking of yourBookings){
+            let bookingDate = new Date(booking.fromDate);
+            console.log(bookingDate)
+            console.log(todaysDate)
+            if(bookingDate >= todaysDate){
+                futureBookings.push(booking);
+                index++;
+            } else {
+                previousBookings.push(booking);
+                index++;
+            }
+        }
+        setPastBookings(previousBookings);
+        setFutureBookings(futureBookings);
     }
 
     useEffect(() => {
@@ -43,13 +69,16 @@ const Profile = () => {
 
     useEffect(() => {
         if(yourBookings){
-            renderYourBookings();
+            sortBookings();
         }
     }, [yourBookings])
 
     return (
         <>
-        {yourBookings ? renderYourBookings() : null}
+        <h3>Upcoming Bookings</h3>
+        {futureBookings ? renderBookings(futureBookings) : null}
+        <h3>Previous Bookings</h3>
+        {pastBookings ? renderBookings(pastBookings) : null}
         </>
     )
 }
