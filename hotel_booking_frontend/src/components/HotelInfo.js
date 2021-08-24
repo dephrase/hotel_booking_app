@@ -33,14 +33,19 @@ function HotelInfo({bookingInfo, id, hotelDetails, setHotelFinalDetails, user, s
 
     const handleConfirmation = (room) => {
         let dbPrice = Number(room.ratePlans[0].price.current.substring(1))
-        console.log(dbPrice)
-        setRoomPrice(dbPrice);
+        let checkinDateObject = new Date(bookingInfo.Checkin);
+        let checkoutDateObject = new Date(bookingInfo.Checkout);
+        let daysMillis = Math.abs(checkoutDateObject - checkinDateObject);
+        let numberOfDays = (daysMillis / (60*60*24*1000))
+        let price = numberOfDays * dbPrice;
+        console.log(price)
+        setRoomPrice(price);
 
         let newBooking = {
             hotel_id: hotelDetails.id,
             fromDate: bookingInfo.Checkin,
             toDate: bookingInfo.Checkout,
-            price: dbPrice,
+            price: price,
             numberOfAdults: bookingInfo.Adults,
             numberOfChildren: bookingInfo.Children,
             roomType: room.name,

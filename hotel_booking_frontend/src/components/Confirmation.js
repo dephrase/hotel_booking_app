@@ -8,8 +8,6 @@ const Confirmation = ({hotel, roomDetails, bookingInfo, hotelDetails, roomPrice}
         let checkoutDateObject = new Date(bookingInfo.Checkout);
         let daysMillis = Math.abs(checkoutDateObject - checkinDateObject);
         let numberOfDays = (daysMillis / (60*60*24*1000))
-        console.log(numberOfDays)
-        console.log(roomPrice)
         let price = numberOfDays * roomPrice;
         return price;
     }

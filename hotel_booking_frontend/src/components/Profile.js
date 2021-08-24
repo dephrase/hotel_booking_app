@@ -4,6 +4,8 @@ import Request from "../helpers/request";
 const Profile = () => {
 
     const [yourBookings, setYourBookings] = useState(null)
+    const [pastBookings, setPastBookings] = useState(null)
+    const [futureBookings, setFutureBookings] = useState(null)
 
     const requestBookings = function(){
         const request = new Request();
