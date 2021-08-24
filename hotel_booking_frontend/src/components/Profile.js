@@ -17,10 +17,10 @@ const Profile = () => {
 
     let today = new Date();
     let date = today.getFullYear() +'-'+(today.getMonth()+1)+'-'+today.getDate();
-    let todaysDate = date.toDate();
+    let todaysDate = new Date(date);
 
     const renderBookings = function(bookingsList){
-        let bookingsDivs = [];
+        let bookingsDivs = []; 
 
         let index = 0;
         for(let booking of bookingsList){
