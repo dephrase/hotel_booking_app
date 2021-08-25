@@ -24,21 +24,33 @@ const HotelContainer = ({bookingInfo, setHotel}) => {
         setHotel(hotel)
     }
 
+    const getStars = (hotelRating) => {
+        let stars = [];
+        switch (hotelRating){
+            case "0 stars":
+                stars = null;
+                break;
+            case "1 stars":
+                stars.push(<p>&#11088</p>)
+                break;
+            
+        }
+    }
+
     function renderHotels(){
         let hotelDivs = [];
         if(hotels){
             let index = 0;
             for(let hotel of hotels.data.body.searchResults.results){
                 let hotelDiv = <div key={index} className="hotel_div">
-                    <h4>{hotel.name}</h4>
-                    <img src={hotel.optimizedThumbUrls.srpDesktop} alt="Hotel Thumbnail"/>
+                    <h4>{hotel.name} {getStars()}</h4>
                     <h6>{hotel.neighbourhood}</h6>
+                    <img src={hotel.optimizedThumbUrls.srpDesktop} alt="Hotel Thumbnail"/>
                     <p>{hotel.address.streetAddress}</p>
                     <p>{hotel.landmarks[0].distance} from {hotel.landmarks[0].label}</p>
                     <p>{hotel.starRating} stars</p>
                     <p>{hotel.ratePlan.price.fullyBundledPricePerStay}</p>
                     <p>{hotel.ratePlan.price.info}: {hotel.ratePlan.price.current}</p>
-                    <p>HotelID: {hotel.id}</p>
                     <Link to={`/hotel_info/${hotel.id}`}><button onClick={() => updateHotel(hotel)}>Book Now</button></Link>
                 </div>
                 hotelDivs.push(hotelDiv)
@@ -51,7 +63,6 @@ const HotelContainer = ({bookingInfo, setHotel}) => {
     return (
         <>
         <div className = "hotel_container">
-            <p>Hotel Container</p>
             {hotels ? renderHotels() : null}
         </div>
         </>

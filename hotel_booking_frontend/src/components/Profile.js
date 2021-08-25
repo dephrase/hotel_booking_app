@@ -25,7 +25,7 @@ const Profile = () => {
         let index = 0;
         for(let booking of bookingsList){
             bookingsDivs.push(
-                <div key={index}>
+                <div className="individual_bookings"key={index}>
                     <h3>{booking.hotelName}</h3>
                     <h3>{booking.roomType}</h3>
                     <p>Check-in Date: {booking.fromDate}</p>
@@ -76,9 +76,13 @@ const Profile = () => {
     return (
         <>
         <h3>Upcoming Bookings</h3>
+        <div className="profile_bookings_container">
         {futureBookings ? renderBookings(futureBookings) : null}
+        </div>
         <h3>Previous Bookings</h3>
+        <div className="profile_bookings_container">
         {pastBookings ? renderBookings(pastBookings) : null}
+        </div>
         </>
     )
 }

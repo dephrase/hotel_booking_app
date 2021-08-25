@@ -45,11 +45,25 @@ code {
 .hotel_div{
   border-style: solid;
   padding: 5px;
+  margin: 10px;
 }
 
 .search_form{
   display: flex;
   flex-direction: row;
+}
+
+.profile_bookings_container{
+  border-style: solid;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.individual_bookings{
+  width: 33%;
+  padding: 10px;
+  background-color: aliceblue;
 }
 
 
