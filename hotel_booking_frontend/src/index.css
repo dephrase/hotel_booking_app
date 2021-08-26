@@ -19,7 +19,12 @@ code {
   padding: 5px;
   margin: 20px;
   box-shadow: 5px 5px rgba(213, 214, 212, 0.2);
-  height: 50px;
+  height: 100px;
+  text-decoration: none;
+}
+
+.navbar_ul{
+  text-decoration: none;
 }
 
 .search_bar{
